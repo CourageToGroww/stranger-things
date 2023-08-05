@@ -1,10 +1,20 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PostsRoute from "./routes/PostsRoutes";
+import ProfileRoute from "./routes/ProfileRoute";
+import LoginRoute from "./routes/LoginRoute";
+import RegisterRoute from "./routes/RegisterRoute";
 import "./global.css";
 
 function App() {
   return (
-    <>
-      <h1 className="text-center text-red-500 text-7xl "> Test</h1>
-    </>
+    <Router>
+      <Switch>
+        <Route path="/posts" component={PostsRoute} />
+        <Route path="/profile" component={ProfileRoute} />
+        <Route path="/login" component={LoginRoute} />
+        <Route path="/register" component={RegisterRoute} />
+      </Switch>
+    </Router>
   );
 }
 
