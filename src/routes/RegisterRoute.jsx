@@ -1,5 +1,5 @@
 const RegisterRoute = () => {
-  return <div>Registeration Page</div>;
+  return;
 };
 
 export default RegisterRoute;

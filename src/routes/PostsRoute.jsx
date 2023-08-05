@@ -1,5 +1,5 @@
 const PostsRoute = () => {
-  return <div>Posts Page</div>;
+  return;
 };
 
 export default PostsRoute;

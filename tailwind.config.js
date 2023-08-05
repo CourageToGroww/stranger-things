@@ -1,5 +1,5 @@
 module.exports = {
-  mode: "jit",
+  //mode: "jit",
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -28,31 +28,11 @@ module.exports = {
           border: "1px solid rgba(255, 255, 255, 0.2)",
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         },
-        "@screen sm": {
-          ".glass": {
-            // Custom styles for small screens
-          },
-        },
-        "@screen md": {
-          ".glass": {
-            // Custom styles for medium screens
-          },
-        },
-        "@screen lg": {
-          ".glass": {
-            // Custom styles for large screens
-          },
-        },
-        "@screen xl": {
-          ".glass": {
-            // Custom styles for extra-large screens
-          },
-        },
-        "@screen 2xl": {
-          ".glass": {
-            // Custom styles for 2xl screens
-          },
-        },
+        "@screen sm": {},
+        "@screen md": {},
+        "@screen lg": {},
+        "@screen xl": {},
+        "@screen 2xl": {},
       };
       addUtilities(newUtilities, ["responsive", "hover"]);
     },

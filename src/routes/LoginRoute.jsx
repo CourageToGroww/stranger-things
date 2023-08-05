@@ -1,5 +1,5 @@
 const LoginRoute = () => {
-  return <div>Login</div>;
+  return;
 };
 
 export default LoginRoute;

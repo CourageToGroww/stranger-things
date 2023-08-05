@@ -1,5 +1,5 @@
 const ProfileRoute = () => {
-  return <div>My Profile Page</div>;
+  return;
 };
 
 export default ProfileRoute;

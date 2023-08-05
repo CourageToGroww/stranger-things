@@ -1,3 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.text-red-glow:hover {
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #ff0000;
+}
+
+.text-rose-glow:hover {
+  text-shadow: 0 0 3px #ff00ff, 0 0 5px #ff00ff;
+}
