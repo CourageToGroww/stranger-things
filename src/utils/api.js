@@ -1,5 +1,5 @@
 //setting up API url variable
-const API_URL = "https://strangers-things.herokuapp.com/api/";
+export const API_URL = "https://strangers-things.herokuapp.com/api/";
 
 /*
 added this to the main branch because its a good first function to write, imo. since we know we will need it throughout the app and its going to fetch the posts from the API
