@@ -1,35 +1,32 @@
+/* eslint-disable react/prop-types */
 //navbar for the app
-import { useState, createContext, useEffect } from "react";
+import { useContext, createContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaSun, FaMoon } from "react-icons/fa";
 
-const ThemeContext = createContext({
+export const ThemeContext = createContext({
   theme: "light",
   toggleTheme: () => {},
 });
 
-const NavBar = () => {
-  const [theme, setTheme] = useState("dark");
+const NavBar = ({ onLoginClick }) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (theme === "dark") {
       document.body.style.backgroundColor = "black";
     } else {
-      document.body.style.backgroundColor = "orange";
+      document.body.style.backgroundColor = "lightblue";
     }
   }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div
         className={`sticky top-0 p-4 ${
           theme === "light"
-            ? "bg-gray-800 text-white inset-1"
+            ? "bg-blue-400 text-white "
             : "bg-gray-800 text-rose-400"
         } glass font-orbitron `}
       >
@@ -64,27 +61,32 @@ const NavBar = () => {
               </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <FiMenu
-                className={`hover:text-red-700 ${
-                  theme === "light" ? "text-rose-glow" : "text-red-glow"
-                }`}
-              />
               <button
-                className={`hover:text-red-700 ${
-                  theme === "light" ? "text-rose-glow" : "text-red-glow"
+                className={`${
+                  theme === "light"
+                    ? "hover:text-yellow-500 text-rose-glow"
+                    : "hover:text-red-700 text-red-glow"
                 }`}
                 onClick={toggleTheme}
               >
                 {theme === "light" ? <FaMoon /> : <FaSun />}
               </button>
-              <Link
+              <FiMenu
+                className={`${
+                  theme === "light"
+                    ? "hover:text-yellow-500 text-rose-glow"
+                    : "hover:text-red-700 text-red-glow"
+                }`}
+              />
+
+              <button
                 className={`hover:text-red-700 ${
                   theme === "light" ? "text-rose-glow" : "text-red-glow"
                 }`}
-                to="/login"
+                onClick={onLoginClick}
               >
                 Login
-              </Link>
+              </button>
             </div>
           </div>
         </div>

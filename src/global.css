@@ -7,5 +7,5 @@
 }
 
 .text-rose-glow:hover {
-  text-shadow: 0 0 3px #ff00ff, 0 0 5px #ff00ff;
+  text-shadow: 0 0 3px #ffff00, 0 0 5px #ffff00, 0 0 10px #ffff00;
 }
