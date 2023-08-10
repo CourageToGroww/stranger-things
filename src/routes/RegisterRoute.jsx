@@ -1,5 +1,7 @@
+import RegistrationForm from "../components/RegistrationForm";
+
 const RegisterRoute = () => {
-  return;
+  return <RegistrationForm />;
 };
 
 export default RegisterRoute;

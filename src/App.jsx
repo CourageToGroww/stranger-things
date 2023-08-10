@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
 import LoginRoute from "./routes/LoginRoute";
@@ -10,6 +10,7 @@ import "./global.css";
 import {
   handleLoginClick,
   handleLoginFormClose,
+  handleRegisterClick,
   toggleTheme,
   ThemeContext,
 } from "./utils/helpers";
@@ -18,13 +19,18 @@ import {
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [theme, setTheme] = useState("dark");
+  const location = useLocation();
 
   return (
     <ThemeContext.Provider
       value={{ theme, toggleTheme: () => toggleTheme(setTheme) }}
     >
-      <NavBar onLoginClick={() => handleLoginClick(setShowLoginForm)()} />
-      {showLoginForm && (
+      {" "}
+      <NavBar
+        onRegisterClick={() => handleRegisterClick(setShowLoginForm)()}
+        onLoginClick={() => handleLoginClick(setShowLoginForm)()}
+      />
+      {showLoginForm && location.pathname !== "/register" && (
         <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
       )}
       <Routes>

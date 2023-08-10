@@ -7,7 +7,7 @@ const LoginForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen overflow-y-auto">
       <div className="relative w-full max-w-xs mx-auto">
         <button
           className={`absolute top-0 right-0  mr-2 ${
@@ -66,10 +66,10 @@ const LoginForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col items-center justify-between">
             <button
-              className={`w-32 px-4 py-2 font-bold rounded focus:outline-none hover:text-red-500 focus:shadow-outline ${
+              className={`w-32 px-4 py-2 font-bold rounded focus:outline-none  focus:shadow-outline ${
                 theme === "light"
-                  ? "text-black border-black bg-white border border-black-400"
-                  : " dark:text-rose-400 border border-rose-400 "
+                  ? "text-black border-black bg-white border border-black-400 hover:text-yellow-500"
+                  : " dark:text-rose-400 border border-rose-400 hover:text-red-500"
               }`}
               type="button"
             >
@@ -77,10 +77,10 @@ const LoginForm = ({ onClose }) => {
             </button>
             <Link
               to="/register"
-              className={`inline-block text-sm font-bold text-blue-500 align-baseline hover:text-red-500 mt-5 ${
+              className={`inline-block text-sm font-bold align-baseline  mt-5 ${
                 theme === "light"
-                  ? "text-white border-black"
-                  : " dark:text-rose-400 "
+                  ? "text-white border-black hover:text-yellow-500"
+                  : " dark:text-rose-400 hover:text-red-500"
               }`}
             >
               No account? <br />
