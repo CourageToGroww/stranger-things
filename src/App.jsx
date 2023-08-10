@@ -3,7 +3,7 @@ import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
 import LoginRoute from "./routes/LoginRoute";
 import RegisterRoute from "./routes/RegisterRoute";
-import NavBar, { ThemeContext } from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
 import { useState } from "react";
 import "./global.css";
@@ -11,6 +11,7 @@ import {
   handleLoginClick,
   handleLoginFormClose,
   toggleTheme,
+  ThemeContext,
 } from "./utils/helpers";
 
 //after reading through thinking in react a few times i am chaning my routes to be in the app.jsx file to keep the navbar reusable, flexible, and maintainable
@@ -24,7 +25,7 @@ function App() {
     >
       <NavBar onLoginClick={() => handleLoginClick(setShowLoginForm)()} />
       {showLoginForm && (
-        <LoginForm onClose={() => handleLoginFormClose(setShowLoginForm)()} />
+        <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
       )}
       <Routes>
         <Route path="/posts" element={<PostsRoute />} />

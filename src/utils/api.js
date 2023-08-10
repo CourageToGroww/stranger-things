@@ -1,5 +1,6 @@
-//setting up API url variable
-export const API_URL = "https://strangers-things.herokuapp.com/api/";
+//setting up API url variables
+export const COHORT_NAME = "2302-ACC-CT-WEB-PT-A";
+export const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 /*
 added this to the main branch because its a good first function to write, imo. since we know we will need it throughout the app and its going to fetch the posts from the API

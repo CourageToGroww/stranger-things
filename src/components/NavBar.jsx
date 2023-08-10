@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
 //navbar for the app
-import { useContext, createContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaSun, FaMoon } from "react-icons/fa";
-
-export const ThemeContext = createContext({
-  theme: "light",
-  toggleTheme: () => {},
-});
+import { ThemeContext } from "../utils/helpers";
 
 const NavBar = ({ onLoginClick }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);

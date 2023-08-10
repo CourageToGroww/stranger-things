@@ -1,13 +1,22 @@
-//A form component for user login.
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
-import { ThemeContext } from "./NavBar";
+import { ThemeContext } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="flex items-center justify-center h-screen ">
-      <div className="w-full max-w-xs mx-auto ">
+    <div className="flex items-center justify-center h-screen">
+      <div className="relative w-full max-w-xs mx-auto">
+        <button
+          className={`absolute top-0 right-0  mr-2 ${
+            theme === "light" ? "text-black" : "text-red-400"
+          }`}
+          onClick={onClose}
+        >
+          x
+        </button>
         <form
           className={`px-8 pt-6 pb-8 mb-4 rounded shadow-md font-orbitron ${
             theme === "light"
@@ -25,10 +34,10 @@ const LoginForm = () => {
               Username
             </label>
             <input
-              className={`w-full px-3 py-2 leading-tight text-gray-700 border border-red-400 rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
+              className={`w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
                 theme === "light"
                   ? "bg-white border-black"
-                  : "dark:bg-gray-800 dark:text-rose-400"
+                  : "dark:bg-gray-800 dark:text-rose-400 dark:border-rose-400"
               }`}
               id="username"
               type="text"
@@ -45,10 +54,10 @@ const LoginForm = () => {
               Password
             </label>
             <input
-              className={`w-full px-3 py-2 mb-3 leading-tight text-gray-700 border border-red-400 rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
+              className={`w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
                 theme === "light"
                   ? "bg-white border-black"
-                  : "dark:bg-gray-800 dark:text-rose-400"
+                  : "dark:bg-gray-800 dark:text-rose-400 dark:border-rose-400"
               }`}
               id="password"
               type="password"

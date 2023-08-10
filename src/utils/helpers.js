@@ -1,3 +1,5 @@
+import { createContext } from "react";
+
 //event handlers for conditionally rendering the login form
 
 //handlers
@@ -20,3 +22,8 @@ export function handleLoginFormClose(setShowLoginForm) {
 export const toggleTheme = (setTheme) => {
   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 };
+
+export const ThemeContext = createContext({
+  theme: "light",
+  toggleTheme: () => {},
+});
