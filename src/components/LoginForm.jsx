@@ -42,6 +42,9 @@ const LoginForm = ({ onClose }) => {
               id="username"
               type="text"
               placeholder="Username"
+              required
+              maxLength={24}
+              minLength={8}
             />
           </div>
           <div className="mb-6">
@@ -62,6 +65,9 @@ const LoginForm = ({ onClose }) => {
               id="password"
               type="password"
               placeholder="***********"
+              required
+              maxLength={24}
+              minLength={8}
             />
           </div>
           <div className="flex flex-col items-center justify-between">
