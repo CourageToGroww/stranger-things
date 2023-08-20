@@ -7,7 +7,7 @@ const LoginForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="flex items-center justify-center h-screen overflow-y-auto">
+    <div className="flex items-center justify-center h-screen overflow-y-auto ">
       <div className="relative w-full max-w-xs mx-auto">
         <button
           className={`absolute top-0 right-0  mr-2 ${

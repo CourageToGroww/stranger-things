@@ -24,7 +24,7 @@ export const handleHomeClick = (setShowLoginForm, navigate) => {
   navigate("/");
 };
 
-//Handlers for login
+//Handlers for login form
 export function handleLoginClick(setShowLoginForm) {
   return function () {
     setShowLoginForm(true);
