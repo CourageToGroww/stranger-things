@@ -46,3 +46,44 @@ export const ThemeContext = createContext({
   theme: "light",
   toggleTheme: () => {},
 });
+
+//handler for registration logic
+
+export const handleRegChange = (e, formData, setFormData) => {
+  const { id, value } = e.target;
+  setFormData((prevData) => ({ ...prevData, [id]: value }));
+};
+
+export const handleRegSubmit = async (
+  e,
+  formData,
+  setMessage,
+  setIsRegistered
+) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost:3000/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setMessage(data.message);
+      setIsRegistered(true); // Set isRegistered to true on successful registration
+    } else {
+      setMessage(data.error);
+    }
+  } catch (error) {
+    setMessage("An error occurred while registering. Please try again.");
+  }
+};
+
+//helper function to get the display name of a component
+
+export const getDisplayName = (WrappedComponent) => {
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
+};
