@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const sequelize = require("./db");
 const authRoutes = require("./routes/api/auth");
@@ -7,7 +9,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 const registerRoutes = require("./routes/api/register");
-
+const loginRoute = require("./routes/api/login");
 // Middleware
 app.use(express.json());
 // Enable CORS for all routes
@@ -16,6 +18,7 @@ app.use(cors());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/register", registerRoutes);
+app.use("/api/login", loginRoute);
 
 // Start the server after syncing the database
 sequelize

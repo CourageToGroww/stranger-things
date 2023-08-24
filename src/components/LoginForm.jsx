@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { ThemeContext } from "../utils/helpers";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { ThemeContext, handleLoginSubmit } from "../utils/helpers";
+import { login } from "../utils/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onClose }) => {
   const { theme } = useContext(ThemeContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="flex items-center justify-center h-screen overflow-y-auto ">
@@ -18,12 +23,32 @@ const LoginForm = ({ onClose }) => {
           x
         </button>
         <form
+          onSubmit={(e) =>
+            handleLoginSubmit(
+              e,
+              username,
+              password,
+              login,
+              onClose,
+              navigate,
+              setMessage
+            )
+          }
           className={`px-8 pt-6 pb-8 mb-4 rounded shadow-md font-orbitron ${
             theme === "light"
-              ? "bg-blue-300 text-white"
+              ? "bg-blue-300 text-black"
               : "bg-gray-800 text-rose-400"
           }`}
         >
+          {message && (
+            <div
+              className={`text-center mb-8 ${
+                theme === "light" ? "text-black" : "text-red-400"
+              }`}
+            >
+              {message}
+            </div>
+          )}{" "}
           <div className="mb-4">
             <label
               className={`block mb-2 text-sm font-bold text-center ${
@@ -34,6 +59,8 @@ const LoginForm = ({ onClose }) => {
               Username
             </label>
             <input
+              value={username} // Bind the value to the state
+              onChange={(e) => setUsername(e.target.value)} // Update the state on change
               className={`w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
                 theme === "light"
                   ? "bg-white border-black"
@@ -57,6 +84,8 @@ const LoginForm = ({ onClose }) => {
               Password
             </label>
             <input
+              value={password} // Bind the value to the state
+              onChange={(e) => setPassword(e.target.value)} // Update the state on change
               className={`w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline ${
                 theme === "light"
                   ? "bg-white border-black"
@@ -72,12 +101,12 @@ const LoginForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col items-center justify-between">
             <button
+              type="submit" // Change the type to submit
               className={`w-32 px-4 py-2 font-bold rounded focus:outline-none  focus:shadow-outline ${
                 theme === "light"
                   ? "text-black border-black bg-white border border-black-400 hover:text-yellow-500"
                   : " dark:text-rose-400 border border-rose-400 hover:text-red-500"
               }`}
-              type="button"
             >
               Log In
             </button>

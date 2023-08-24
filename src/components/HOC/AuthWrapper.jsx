@@ -12,10 +12,11 @@ const AuthWrapper = (WrappedComponent) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
         });
-
-        if (response.ok) {
-          const user = await response.json();
-          setCurrentUser(user);
+        const data = await response.json();
+        if (data.token) {
+          // Store the token and update the current user
+          localStorage.setItem("token", data.token);
+          setCurrentUser({ username: data.username });
         } else {
           throw new Error("Login failed.");
         }

@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 //Handlers for navigation and rendering
 //show get rid of the login form and show the register form
-export const handleRegisterClick = (setShowLoginForm, navigate) => {
+export const handleRegisterClick = (setShowLoginForm, navigate) => () => {
   setShowLoginForm(false);
   navigate("/register");
 };
@@ -24,12 +24,11 @@ export const handleHomeClick = (setShowLoginForm, navigate) => {
   navigate("/");
 };
 
-//Handlers for login form
-export function handleLoginClick(setShowLoginForm) {
-  return function () {
-    setShowLoginForm(true);
-  };
-}
+//Handlers for login
+export const handleLoginClick = (setShowLoginForm, navigate) => {
+  setShowLoginForm(true);
+  navigate("/login");
+};
 
 export function handleLoginFormClose(setShowLoginForm) {
   return function () {
@@ -37,17 +36,55 @@ export function handleLoginFormClose(setShowLoginForm) {
   };
 }
 
-//handlers for dark/light mode
-export const toggleTheme = (setTheme) => {
-  setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+export const handleLoginSubmit = async (
+  e,
+  username,
+  password,
+  login,
+  onClose,
+  navigate,
+  setMessage
+) => {
+  e.preventDefault();
+  try {
+    const result = await login(username, password);
+    if (result && result.success) {
+      onClose();
+      navigate("/");
+    } else {
+      setMessage("Invalid login. Please check your username and password.");
+    }
+  } catch (error) {
+    console.error(error);
+    setMessage("An error occurred while logging in. Please try again.");
+  }
 };
+
+//THEME
+
+//Context
 
 export const ThemeContext = createContext({
   theme: "light",
   toggleTheme: () => {},
 });
 
-//handler for registration logic
+//handlers for dark/light mode
+export const toggleTheme = (setTheme) => {
+  setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+};
+
+//AUTH
+
+//Context
+export const AuthContext = createContext({
+  isAuthenticated: false,
+  user: null,
+  login: () => {},
+  logout: () => {},
+});
+
+//handlers for registration logic
 
 export const handleRegChange = (e, formData, setFormData) => {
   const { id, value } = e.target;
@@ -73,7 +110,7 @@ export const handleRegSubmit = async (
 
     if (response.ok) {
       setMessage(data.message);
-      setIsRegistered(true); // Set isRegistered to true on successful registration
+      setIsRegistered(true);
     } else {
       setMessage(data.error);
     }
