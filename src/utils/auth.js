@@ -16,14 +16,13 @@ export const login = async (username, password) => {
       // Save the token or any other successful login logic
       localStorage.setItem("token", data.token);
       console.log("Login Successful");
-      return { success: true };
+      return { success: true, user: data.user };
     } else {
       // Handle error from the server
       return { success: false, message: data.error };
     }
   } catch (error) {
     console.error(error);
-    // Handle other errors, such as network issues
     return {
       success: false,
       message: "An error occurred while logging in. Please try again.",
@@ -37,7 +36,7 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  const login = (userDetails) => {
+  const authenticate = (userDetails) => {
     setIsAuthenticated(true);
     setUser(userDetails);
   };
@@ -47,5 +46,5 @@ export const useAuth = () => {
     setUser(null);
   };
 
-  return { isAuthenticated, user, login, logout };
+  return { isAuthenticated, user, authenticate, logout };
 };

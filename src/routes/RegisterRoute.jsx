@@ -1,6 +1,11 @@
 import RegistrationForm from "../components/RegistrationForm";
+import { useEffect } from "react";
 
-const RegisterRoute = () => {
+const RegisterRoute = ({ navigate }) => {
+  useEffect(() => {
+    navigate("/register");
+  }, [navigate]);
+
   return <RegistrationForm />;
 };
 

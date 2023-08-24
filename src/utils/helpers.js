@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { login } from "../utils/auth";
 
 //HANDLERS
 
@@ -40,7 +41,7 @@ export const handleLoginSubmit = async (
   e,
   username,
   password,
-  login,
+  authenticate,
   onClose,
   navigate,
   setMessage
@@ -49,6 +50,7 @@ export const handleLoginSubmit = async (
   try {
     const result = await login(username, password);
     if (result && result.success) {
+      authenticate(result.user);
       onClose();
       navigate("/");
     } else {

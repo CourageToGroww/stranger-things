@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-//navbar for the app
 import { useContext, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { ThemeContext, AuthContext } from "../utils/helpers";
@@ -9,7 +7,6 @@ import { ThemeContext, AuthContext } from "../utils/helpers";
 const NavBar = ({ onLoginClick }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { isAuthenticated, user } = useContext(AuthContext);
-  const location = useLocation();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -30,26 +27,22 @@ const NavBar = ({ onLoginClick }) => {
       <div className="">
         <div className="flex justify-between">
           <nav className="flex space-x-4">
-            {location.pathname !== "/posts" && (
-              <Link
-                className={`hover:text-red-700 ${
-                  theme === "light" ? "text-rose-glow" : "text-red-glow"
-                }`}
-                to="/posts"
-              >
-                Posts
-              </Link>
-            )}
-            {location.pathname !== "/profile" && (
-              <Link
-                className={`hover:text-red-700 ${
-                  theme === "light" ? "text-rose-glow" : "text-red-glow"
-                }`}
-                to="/profile"
-              >
-                Profile
-              </Link>
-            )}
+            <Link
+              className={`hover:text-red-700 ${
+                theme === "light" ? "text-rose-glow" : "text-red-glow"
+              }`}
+              to="/posts"
+            >
+              Posts
+            </Link>
+            <Link
+              className={`hover:text-red-700 ${
+                theme === "light" ? "text-rose-glow" : "text-red-glow"
+              }`}
+              to="/profile"
+            >
+              Profile
+            </Link>
           </nav>
           <div>
             <Link

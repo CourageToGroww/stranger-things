@@ -1,3 +1,4 @@
+// /home/jake/learning/stranger-things/src/App.jsx
 import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
 import LoginForm from "./components/LoginForm";
@@ -9,7 +10,6 @@ import { useAuth } from "./utils/auth";
 import {
   handleLoginClick,
   handleLoginFormClose,
-  handleRegisterClick,
   toggleTheme,
   ThemeContext,
   AuthContext,
@@ -22,7 +22,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-//after reading through thinking in react a few times i am chaning my routes to be in the app.jsx file to keep the navbar reusable, flexible, and maintainable
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [theme, setTheme] = useState("dark");
@@ -36,21 +35,27 @@ function App() {
         value={{ theme, toggleTheme: () => toggleTheme(setTheme) }}
       >
         <NavBar
-          onRegisterClick={handleRegisterClick(setShowLoginForm, navigate)}
-          onLoginClick={handleLoginClick(setShowLoginForm, navigate)}
+          onLoginClick={() => handleLoginClick(setShowLoginForm, navigate)}
         />
         {showLoginForm && location.pathname !== "/register" && (
           <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
         )}
         <Routes>
-          <Route path="/" element={<Navigate to="/posts" />} />
-          <Route path="/posts" element={<PostsRoute />} />
-          <Route path="/profile" element={<ProfileRoute />} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" element={<RegisterRoute />} />
+          <Route path="/" element={<Navigate to="/" />} />
+          <Route path="/posts" element={<PostsRoute navigate={navigate} />} />
+          <Route
+            path="/profile"
+            element={<ProfileRoute navigate={navigate} />}
+          />
+          <Route path="/login" element={<LoginForm />} />
+          <Route
+            path="/register"
+            element={<RegisterRoute navigate={navigate} />}
+          />
         </Routes>
       </ThemeContext.Provider>
     </AuthContext.Provider>
   );
 }
+
 export default App;

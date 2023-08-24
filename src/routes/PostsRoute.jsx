@@ -1,5 +1,11 @@
-const PostsRoute = () => {
-  return;
+import { useEffect } from "react";
+
+const PostsRoute = ({ navigate }) => {
+  useEffect(() => {
+    navigate("/posts");
+  }, [navigate]);
+
+  return null;
 };
 
 export default PostsRoute;
