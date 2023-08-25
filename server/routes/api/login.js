@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   const { username, password } = req.body;
   //Validate input
   if (!username || !password) {

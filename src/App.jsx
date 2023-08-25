@@ -47,7 +47,12 @@ function App() {
             path="/profile"
             element={<ProfileRoute navigate={navigate} />}
           />
-          <Route path="/login" element={<LoginForm />} />
+          <Route
+            path="/login"
+            element={
+              <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
+            }
+          />
           <Route
             path="/register"
             element={<RegisterRoute navigate={navigate} />}

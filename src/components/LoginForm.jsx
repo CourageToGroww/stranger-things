@@ -101,7 +101,7 @@ const LoginForm = ({ onClose }) => {
           </div>
           <div className="flex flex-col items-center justify-between">
             <button
-              type="submit" // Change the type to submit
+              type="submit"
               className={`w-32 px-4 py-2 font-bold rounded focus:outline-none  focus:shadow-outline ${
                 theme === "light"
                   ? "text-black border-black bg-white border border-black-400 hover:text-yellow-500"

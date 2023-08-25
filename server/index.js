@@ -9,12 +9,17 @@ const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
-const registerRoutes = require("./routes/api/register");
-const loginRoute = require("./routes/api/login");
+// CORS configuration
+const corsOptions = {
+  origin: "http://localhost:5173",
+};
+// Enable CORS with the specified options
+app.use(cors(corsOptions));
 // Middleware
 app.use(express.json());
-// Enable CORS for all routes
-app.use(cors());
+
+const registerRoutes = require("./routes/api/register");
+const loginRoute = require("./routes/api/login");
 
 // Routes
 app.use("/api/auth", authRoutes);

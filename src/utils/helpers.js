@@ -31,11 +31,9 @@ export const handleLoginClick = (setShowLoginForm, navigate) => {
   navigate("/login");
 };
 
-export function handleLoginFormClose(setShowLoginForm) {
-  return function () {
-    setShowLoginForm(false);
-  };
-}
+export const handleLoginFormClose = (setShowLoginForm) => () => {
+  setShowLoginForm(false);
+};
 
 export const handleLoginSubmit = async (
   e,
@@ -64,7 +62,6 @@ export const handleLoginSubmit = async (
     setMessage("An error occurred while logging in. Please try again.");
   }
 };
-
 //THEME
 
 //Context

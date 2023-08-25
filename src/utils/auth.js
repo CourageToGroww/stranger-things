@@ -13,13 +13,12 @@ export const login = async (username, password) => {
     const data = await response.json();
 
     if (response.ok) {
-      // Save the token or any other successful login logic
       localStorage.setItem("token", data.token);
       console.log("Login Successful");
       return { success: true, user: data.user };
     } else {
       // Handle error from the server
-      return { success: false, message: data.error };
+      return { success: false, message: data.error || "An error occurred" };
     }
   } catch (error) {
     console.error(error);
