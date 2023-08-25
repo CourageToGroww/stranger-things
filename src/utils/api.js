@@ -3,8 +3,7 @@ export const COHORT_NAME = "2302-ACC-CT-WEB-PT-A";
 export const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 /*
-added this to the main branch because its a good first function to write, imo. since we know we will need it throughout the app and its going to fetch the posts from the API
-adding null to the token as default value in parameter of getPosts 
+This is where I was going to pull all of the post from the FSA API and throw them to my frontend /posts route 
 */
 export async function getPosts(token = null) {
   try {
