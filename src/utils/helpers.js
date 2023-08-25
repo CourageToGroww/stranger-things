@@ -54,7 +54,10 @@ export const handleLoginSubmit = async (
       onClose();
       navigate("/");
     } else {
-      setMessage("Invalid login. Please check your username and password.");
+      setMessage(
+        result.message ||
+          "Invalid login. Please check your username and password."
+      );
     }
   } catch (error) {
     console.error(error);

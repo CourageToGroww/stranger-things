@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const { username, password } = req.body;
   //Validate input
   if (!username || !password) {
@@ -12,7 +13,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    //find user by email
+    //find user by username
     const user = await User.findOne({ where: { username } });
     if (!user) {
       return res.status(400).json({ error: "Invalid username or password" });

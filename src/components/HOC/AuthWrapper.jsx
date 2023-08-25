@@ -1,29 +1,10 @@
 import { useState } from "react";
 import { getDisplayName } from "../../utils/helpers";
+import { login } from "../../utils/auth";
 
 const AuthWrapper = (WrappedComponent) => {
   const WithAuth = (props) => {
     const [currentUser, setCurrentUser] = useState(null);
-
-    const login = async (username, password) => {
-      try {
-        const response = await fetch("/api/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        });
-        const data = await response.json();
-        if (data.token) {
-          // Store the token and update the current user
-          localStorage.setItem("token", data.token);
-          setCurrentUser({ username: data.username });
-        } else {
-          throw new Error("Login failed.");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
     const logout = async () => {
       try {
