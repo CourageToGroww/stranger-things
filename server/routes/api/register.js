@@ -4,6 +4,7 @@ const router = express.Router();
 const User = require("../../models/User");
 
 router.post("/", async (req, res) => {
+  console.log("Request Body:", req.body);
   const { email, username, password } = req.body;
 
   // Validate the input

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
-import { ThemeContext, handleLoginSubmit } from "../utils/helpers";
-import { login } from "../utils/auth";
+import { ThemeContext } from "../utils/helpers";
+import { handleLoginSubmit } from "../services/loginService";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onClose }) => {
@@ -28,7 +28,6 @@ const LoginForm = ({ onClose }) => {
               e,
               username,
               password,
-              login,
               onClose,
               navigate,
               setMessage
@@ -48,7 +47,7 @@ const LoginForm = ({ onClose }) => {
             >
               {message}
             </div>
-          )}{" "}
+          )}
           <div className="mb-4">
             <label
               className={`block mb-2 text-sm font-bold text-center ${

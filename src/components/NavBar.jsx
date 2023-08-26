@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
@@ -15,6 +16,11 @@ const NavBar = ({ onLoginClick }) => {
       document.body.style.backgroundColor = "lightblue";
     }
   }, [theme]);
+
+  useEffect(() => {
+    console.log("Authentication State:", isAuthenticated);
+    console.log("User:", user);
+  }, [isAuthenticated, user]);
 
   return (
     <div

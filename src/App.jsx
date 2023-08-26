@@ -1,6 +1,7 @@
 // /home/jake/learning/stranger-things/src/App.jsx
 import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
+import LoginRoute from "./routes/LoginRoute";
 import LoginForm from "./components/LoginForm";
 import RegisterRoute from "./routes/RegisterRoute";
 import NavBar from "./components/NavBar";
@@ -9,7 +10,6 @@ import "./global.css";
 import { useAuth } from "./utils/auth";
 import {
   handleLoginClick,
-  handleLoginFormClose,
   toggleTheme,
   ThemeContext,
   AuthContext,
@@ -38,7 +38,7 @@ function App() {
           onLoginClick={() => handleLoginClick(setShowLoginForm, navigate)}
         />
         {showLoginForm && location.pathname !== "/register" && (
-          <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
+          <LoginForm onClose={() => setShowLoginForm(false)} />
         )}
         <Routes>
           <Route path="/" element={<Navigate to="/" />} />
@@ -47,12 +47,7 @@ function App() {
             path="/profile"
             element={<ProfileRoute navigate={navigate} />}
           />
-          <Route
-            path="/login"
-            element={
-              <LoginForm onClose={handleLoginFormClose(setShowLoginForm)} />
-            }
-          />
+          <Route path="/login" element={<LoginRoute navigate={navigate} />} />
           <Route
             path="/register"
             element={<RegisterRoute navigate={navigate} />}

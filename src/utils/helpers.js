@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { login } from "../utils/auth";
 
 //HANDLERS
 
@@ -35,33 +34,6 @@ export const handleLoginFormClose = (setShowLoginForm) => () => {
   setShowLoginForm(false);
 };
 
-export const handleLoginSubmit = async (
-  e,
-  username,
-  password,
-  authenticate,
-  onClose,
-  navigate,
-  setMessage
-) => {
-  e.preventDefault();
-  try {
-    const result = await login(username, password);
-    if (result && result.success) {
-      authenticate(result.user);
-      onClose();
-      navigate("/");
-    } else {
-      setMessage(
-        result.message ||
-          "Invalid login. Please check your username and password."
-      );
-    }
-  } catch (error) {
-    console.error(error);
-    setMessage("An error occurred while logging in. Please try again.");
-  }
-};
 //THEME
 
 //Context

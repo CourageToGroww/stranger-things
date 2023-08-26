@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const login = async (username, password) => {
+  console.log("Logging in with username and password:", username, password);
   try {
     const response = await fetch("http://localhost:3000/api/login", {
       method: "POST",
@@ -11,7 +12,7 @@ export const login = async (username, password) => {
     });
 
     const data = await response.json();
-
+    console.log("Received response:", response, data);
     if (response.ok) {
       localStorage.setItem("token", data.token);
       console.log("Login Successful");
