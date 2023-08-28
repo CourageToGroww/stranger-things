@@ -1,19 +1,14 @@
-// /home/jake/learning/stranger-things/src/App.jsx
+import "./global.css";
 import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
 import LoginRoute from "./routes/LoginRoute";
 import LoginForm from "./components/LoginForm";
 import RegisterRoute from "./routes/RegisterRoute";
 import NavBar from "./components/NavBar";
-import { useState } from "react";
-import "./global.css";
-import { useAuth } from "./utils/auth";
-import {
-  handleLoginClick,
-  toggleTheme,
-  ThemeContext,
-  AuthContext,
-} from "./utils/helpers";
+import { useState, useContext } from "react";
+import { handleLoginClick, toggleTheme } from "./utils/helpers";
+import { ThemeContext } from "./utils/context";
+import { AuthProvider, AuthContext } from "./components/AuthProvider";
 import {
   Route,
   Routes,
@@ -27,10 +22,15 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, user, login, logout } = useAuth();
+  const auth = useContext(AuthContext);
+  const { login } = auth;
+
+  const authenticate = (userData) => {
+    login(userData);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthProvider>
       <ThemeContext.Provider
         value={{ theme, toggleTheme: () => toggleTheme(setTheme) }}
       >
@@ -38,7 +38,10 @@ function App() {
           onLoginClick={() => handleLoginClick(setShowLoginForm, navigate)}
         />
         {showLoginForm && location.pathname !== "/register" && (
-          <LoginForm onClose={() => setShowLoginForm(false)} />
+          <LoginForm
+            onClose={() => setShowLoginForm(false)}
+            authenticate={authenticate}
+          />
         )}
         <Routes>
           <Route path="/" element={<Navigate to="/" />} />
@@ -54,7 +57,7 @@ function App() {
           />
         </Routes>
       </ThemeContext.Provider>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 

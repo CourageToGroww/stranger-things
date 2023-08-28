@@ -1,5 +1,3 @@
-import { createContext } from "react";
-
 //HANDLERS
 
 //Handlers for navigation and rendering
@@ -24,9 +22,8 @@ export const handleHomeClick = (setShowLoginForm, navigate) => {
   navigate("/");
 };
 
-//Handlers for login
-export const handleLoginClick = (setShowLoginForm, navigate) => {
-  setShowLoginForm(true);
+//Handlers for login logic
+export const handleLoginClick = (navigate) => {
   navigate("/login");
 };
 
@@ -34,29 +31,20 @@ export const handleLoginFormClose = (setShowLoginForm) => () => {
   setShowLoginForm(false);
 };
 
+export const loginSuccessful = (result) => {
+  //ADD TO THIS LATER
+  if (!result || !result.success) {
+    return false;
+  }
+  return result && result.success;
+};
+
 //THEME
-
-//Context
-
-export const ThemeContext = createContext({
-  theme: "light",
-  toggleTheme: () => {},
-});
 
 //handlers for dark/light mode
 export const toggleTheme = (setTheme) => {
   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 };
-
-//AUTH
-
-//Context
-export const AuthContext = createContext({
-  isAuthenticated: false,
-  user: null,
-  login: () => {},
-  logout: () => {},
-});
 
 //handlers for registration logic
 

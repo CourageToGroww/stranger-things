@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
-import { ThemeContext } from "../utils/helpers";
+import { ThemeContext } from "../utils/context";
 import { handleLoginSubmit } from "../services/loginService";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = ({ onClose }) => {
+const LoginForm = ({ authenticate }) => {
   const { theme } = useContext(ThemeContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ const LoginForm = ({ onClose }) => {
           className={`absolute top-0 right-0  mr-2 ${
             theme === "light" ? "text-black" : "text-red-400"
           }`}
-          onClick={onClose}
+          onClick={() => navigate("/")}
         >
           x
         </button>
@@ -28,7 +28,7 @@ const LoginForm = ({ onClose }) => {
               e,
               username,
               password,
-              onClose,
+              authenticate,
               navigate,
               setMessage
             )

@@ -1,9 +1,6 @@
 import { useContext, useState } from "react";
-import {
-  ThemeContext,
-  handleRegChange,
-  handleRegSubmit,
-} from "../utils/helpers";
+import { handleRegChange, handleRegSubmit } from "../utils/helpers";
+import { ThemeContext } from "../utils/context";
 
 const RegistrationForm = () => {
   const { theme } = useContext(ThemeContext);

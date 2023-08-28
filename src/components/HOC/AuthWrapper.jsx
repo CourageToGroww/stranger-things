@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { AuthContext, getDisplayName } from "../../utils/helpers";
+import { getDisplayName } from "../../utils/helpers";
+import { AuthContext } from "../AuthProvider";
 
 const AuthWrapper = (WrappedComponent) => {
   const WithAuth = (props) => {
-    const { login, logout, register, user } = useContext(AuthContext);
+    const { login, logout, user } = useContext(AuthContext);
 
     return (
       <WrappedComponent
@@ -11,7 +12,6 @@ const AuthWrapper = (WrappedComponent) => {
         currentUser={user}
         login={login}
         logout={logout}
-        register={register}
       />
     );
   };

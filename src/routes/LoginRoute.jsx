@@ -1,12 +1,16 @@
-/* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useContext } from "react";
+import LoginForm from "../components/LoginForm";
+import { AuthContext } from "../components/AuthProvider";
 
-const LoginRoute = ({ navigate }) => {
-  useEffect(() => {
-    navigate("/login");
-  }, [navigate]);
+const LoginRoute = () => {
+  const { setUser, setIsAuthenticated } = useContext(AuthContext);
 
-  return null;
+  const authenticate = (user) => {
+    setUser(user);
+    setIsAuthenticated(true);
+  };
+
+  return <LoginForm authenticate={authenticate} />;
 };
 
 export default LoginRoute;

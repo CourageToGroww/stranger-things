@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { ThemeContext, AuthContext } from "../utils/helpers";
+import { ThemeContext } from "../utils/context";
+import { AuthContext } from "./AuthProvider";
+import { handleLoginClick } from "../utils/helpers";
 
-const NavBar = ({ onLoginClick }) => {
+const NavBar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { isAuthenticated, user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -16,11 +20,6 @@ const NavBar = ({ onLoginClick }) => {
       document.body.style.backgroundColor = "lightblue";
     }
   }, [theme]);
-
-  useEffect(() => {
-    console.log("Authentication State:", isAuthenticated);
-    console.log("User:", user);
-  }, [isAuthenticated, user]);
 
   return (
     <div
@@ -85,7 +84,7 @@ const NavBar = ({ onLoginClick }) => {
                 className={`hover:text-red-700 ${
                   theme === "light" ? "text-rose-glow" : "text-red-glow"
                 }`}
-                onClick={onLoginClick}
+                onClick={() => handleLoginClick(navigate)}
               >
                 Login
               </button>
