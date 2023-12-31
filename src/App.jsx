@@ -1,7 +1,6 @@
 import "./global.css";
 import PostsRoute from "./routes/PostsRoute";
 import ProfileRoute from "./routes/ProfileRoute";
-import LoginRoute from "./routes/LoginRoute";
 import LoginForm from "./components/LoginForm";
 import RegisterRoute from "./routes/RegisterRoute";
 import NavBar from "./components/NavBar";
@@ -50,7 +49,6 @@ function App() {
             path="/profile"
             element={<ProfileRoute navigate={navigate} />}
           />
-          <Route path="/login" element={<LoginRoute navigate={navigate} />} />
           <Route
             path="/register"
             element={<RegisterRoute navigate={navigate} />}
